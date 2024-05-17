@@ -31,16 +31,18 @@ pipeline {
             }
         }
         stage('Push Image to Hub') {
-            steps {
-                script {
-                    withCredentials([string(credentialsId: 'dockerspe', variable: 'dockerspe')]) {
-                        sh 'docker login -u nikki00011 -p ${dockerspe}'
-                    }
-                    sh 'docker push nikki00011/LibMntSys-Backend'
-			sh 'docker push nikki00011/LibMntSys-frontend'
-                }
+    steps {
+        script {
+            withCredentials([string(credentialsId: 'dockerspe', variable: 'dockerspe')]) {
+                sh "docker login -u nikki00011 -p ${dockerspe}"
             }
+            sh 'docker push nikki00011/LibMntSys-Backend'
+            sh 'docker push nikki00011/LibMntSys-frontend'
         }
+    }
+}
+
+        
  
 }
 }
