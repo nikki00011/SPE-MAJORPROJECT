@@ -3,6 +3,9 @@ pipeline {
     //     DOCKERHUB_CREDENTIALS=credentials('docker-jenkins')
     // }
     agent any
+	tools {
+        maven 'maven'
+    }
 
     stages {
         stage('Git Pull') {
