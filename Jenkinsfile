@@ -1,7 +1,5 @@
 pipeline {
-    // environment{
-    //     DOCKERHUB_CREDENTIALS=credentials('docker-jenkins')
-    // }
+    
     agent any
 	tools {
         maven 'maven'
@@ -21,7 +19,7 @@ pipeline {
                 }
             }
         }
-        }
+        
         stage('Build Docker Image') {
             steps {
                 dir('./Backend') {
@@ -43,17 +41,6 @@ pipeline {
                 }
             }
         }
- //        stage('Ansible Pull & Deploy') {
- //            steps {
- //               ansiblePlaybook colorized: true, disableHostKeyChecking: true, installation: 'Ansible', inventory: 'deploy-docker/inventory', playbook: 'deploy-docker/ebill-deploy.yml'
- //            }
- //        }
-
- //    }
- //    post {
-	// 	always {
-	// 		sh 'docker logout'
-	// 	}
-	// }
+ 
 }
 }
