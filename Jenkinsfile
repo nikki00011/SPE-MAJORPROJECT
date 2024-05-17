@@ -21,29 +21,28 @@ pipeline {
                 }
             }
         }
- //        stage('Build Docker Images') {
- //            steps {
- //                dir('./backend') {
- //                    sh 'docker build -t venkateshkvrs/ebill-backend .'
- //                }
- //                dir('./frontend') {
- //                    sh 'docker build -t venkateshkvrs/ebill-frontend .'
- //                }
- //            }
- //        }
- //        stage('Dockerhub Login') {
- //            steps {
-	// 			sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-	// 		}
-	// 	}
- //        stage('Push Docker Images') {
- //            steps {
- //                script{
- //                    sh 'docker push venkateshkvrs/ebill-backend'
- //                    sh 'docker push venkateshkvrs/ebill-frontend'
- //                }
- //            }
- //        }
+        }
+        stage('Build Docker Image') {
+            steps {
+                dir('./Backend') {
+                    sh 'docker build -t nikki00011/LibMntSys-Backend .'
+                }
+                dir('./frontend') {
+                    sh 'docker build -t nikki00011/LibMntSys-frontend .'
+                }
+            }
+        }
+        stage('Push Image to Hub') {
+            steps {
+                script {
+                    withCredentials([string(credentialsId: 'dockerspe', variable: 'dockerspe')]) {
+                        sh 'docker login -u nikki00011 -p ${dockerspe}'
+                    }
+                    sh 'docker push nikki00011/LibMntSys-Backend'
+			sh 'docker push nikki00011/LibMntSys-frontend'
+                }
+            }
+        }
  //        stage('Ansible Pull & Deploy') {
  //            steps {
  //               ansiblePlaybook colorized: true, disableHostKeyChecking: true, installation: 'Ansible', inventory: 'deploy-docker/inventory', playbook: 'deploy-docker/ebill-deploy.yml'
