@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Maven Build') {
             steps {
-                dir('./backend') {
+                dir('./Backend') {
                     sh 'mvn clean install'
                 }
             }
