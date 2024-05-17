@@ -21,15 +21,16 @@ pipeline {
         }
         
         stage('Build Docker Image') {
-            steps {
-                dir('./Backend') {
-                    sh 'docker build -t nikki00011/LibMntSys-Backend .'
-                }
-                dir('./frontend') {
-                    sh 'docker build -t nikki00011/LibMntSys-frontend .'
-                }
-            }
+    steps {
+        dir('./Backend') {
+            sh 'docker build -t nikki00011/libmntsys-backend .'
         }
+        dir('./frontend') {
+            sh 'docker build -t nikki00011/libmntsys-frontend .'
+        }
+    }
+}
+
         stage('Push Image to Hub') {
     steps {
         script {
@@ -40,9 +41,6 @@ pipeline {
             sh 'docker push nikki00011/LibMntSys-frontend'
         }
     }
-}
-
-        
- 
+} 
 }
 }
