@@ -39,8 +39,8 @@ dir('./Backend') {
                 sh "docker login -u nikki00011 -p ${dockerspe}"
             }
             
-            sh 'docker push nikki00011/LibMntSys-frontend'
-		sh 'docker push nikki00011/LibMntSys-Backend'
+            sh 'docker push nikki00011/libmntsys-frontend'
+		sh 'docker push nikki00011/libmntsys-backend'
         }
     }
 } 
