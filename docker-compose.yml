@@ -1,0 +1,45 @@
+version: '2.26.0'
+networks:
+  libSys-network:
+volumes:
+  database-volume:
+  logs:
+services:
+  mydb:
+    image: mysql:latest
+    healthcheck:
+      test: [ "CMD","ls" ]
+    container_name: database-container
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: 
+    volumes:
+      - database-volume:/var/lib/mysql
+    networks:
+      - libSys-network
+  ebill-backend:
+    image: nikki00011/libmntsys-backend
+    container_name: libSys-backend
+    ports:
+      - "5000:5000"
+    environment:
+      MYSQL_URL: jdbc:mysql://localhost:3306/LibSystem?createDatabaseIfNotExist=true
+      MYSQL_USERNAME: NIKITA
+      MYSQL_PASSWORD: NIKITA11!
+    volumes:
+      - logs:/logs
+    networks:
+      - libSys-network
+    depends_on:
+      mydb:
+        condition: service_healthy
+  libSys-frontend:
+    image: nikki00011/libmntsys-backend
+    container_name: libSys-frontend
+    stdin_open: true
+    ports:
+      - "3000:3000"
+    networks:
+      - libSys-network
+    depends_on:
+      - libSys-backend
