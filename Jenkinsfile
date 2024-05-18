@@ -11,6 +11,13 @@ pipeline {
 		checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'e261986b-ee1d-4dda-bb39-a1e2cd880ebf', url: 'https://github.com/nikki00011/SPE-MAJORPROJECT.git']])
                   }
          }
+		stage('Frontend Build') {
+            steps {
+                dir('./frontend') {
+                    sh 'npm run build'
+                }
+            }
+        }
         stage('Maven Build') {
             steps {
                 dir('./Backend') {
