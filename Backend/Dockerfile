@@ -1,6 +1,3 @@
-FROM openjdk:17
-
-EXPOSE 8081
-
-ADD target/libSys.jar libSys.jar
-ENTRYPOINT ["java", "-jar", "/libSys.jar"]
+FROM openjdk
+COPY ./target/Backend-0.0.1-SNAPSHOT.jar ./
+CMD ["java", "-jar", "Backend-0.0.1-SNAPSHOT.jar"]
