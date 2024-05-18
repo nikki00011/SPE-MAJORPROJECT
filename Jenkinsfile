@@ -19,13 +19,13 @@ pipeline {
                 }
             }
         }
-        stage('Maven Build') {
-            steps {
-                dir('./Backend') {
-                    sh 'mvn clean install'
-                }
-            }
-        }
+        // stage('Maven Build') {
+        //     steps {
+        //         dir('./Backend') {
+        //             sh 'mvn clean install'
+        //         }
+        //     }
+        // }
         
         stage('Build Docker Image') {
     		steps {
@@ -33,9 +33,9 @@ pipeline {
 		        dir('./frontend') {
 		            sh 'docker build -t nikki00011/libmntsys-frontend .'
 		        }
-			dir('./Backend') {
-			    sh 'docker build -t nikki00011/libmntsys-backend .'
-			}
+			// dir('./Backend') {
+			//     sh 'docker build -t nikki00011/libmntsys-backend .'
+			// }
                       }
          }
 
@@ -47,14 +47,14 @@ pipeline {
 		    }
 		    
 		    sh 'docker push nikki00011/libmntsys-frontend'
-			sh 'docker push nikki00011/libmntsys-backend'
+			// sh 'docker push nikki00011/libmntsys-backend'
 		       }
                 }
 	}
-	stage('Ansible Pull & Deploy') {
-            steps {
-               ansiblePlaybook colorized: true, disableHostKeyChecking: true, installation: 'Ansible', inventory: 'deploy-docker/inventory', playbook: 'deploy-docker/libSys-deploy.yml'
-            }
-        }
+	// stage('Ansible Pull & Deploy') {
+ //            steps {
+ //               ansiblePlaybook colorized: true, disableHostKeyChecking: true, installation: 'Ansible', inventory: 'deploy-docker/inventory', playbook: 'deploy-docker/libSys-deploy.yml'
+ //            }
+ //        }
 	}
 }
