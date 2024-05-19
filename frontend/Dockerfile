@@ -1,8 +1,9 @@
-FROM node:21.6.2
+FROM node:alpine
+
 WORKDIR /frontend
-COPY ./package*.json ./
+COPY  package.json .
 RUN npm install
 
 COPY . .
-# Run tests & Then start
-CMD [ "npm", "start"]
+EXPOSE 5173
+CMD ["npm","run","dev","--","--host"]
