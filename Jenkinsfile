@@ -53,7 +53,10 @@ pipeline {
 	}
 	stage('Ansible Pull & Deploy') {
             steps {
-               ansiblePlaybook colorized: true, disableHostKeyChecking: true, installation: 'Ansible', inventory: 'deploy-docker/inventory', playbook: 'deploy-docker/libSys-deploy.yml',sudoUser: null
+               // ansiblePlaybook colorized: true, 
+		// disableHostKeyChecking: true, 
+		inventory: 'deploy-docker/inventory.ini', 
+		playbook: 'deploy-docker/libSys-deploy.yml',
             }
         }
 	}
