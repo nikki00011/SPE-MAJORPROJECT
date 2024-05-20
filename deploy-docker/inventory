@@ -1,2 +1,2 @@
 [myhosts]
-127.0.0.1 ansible_ssh_user=root ansible_ssh_pass=root
+localhost ansible_ssh_user=nikita ansible_ssh_pass=Tusha23!
