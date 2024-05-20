@@ -53,10 +53,11 @@ pipeline {
 	}
 	stage('Ansible Pull & Deploy') {
             steps {
-               // ansiblePlaybook colorized: true, 
+               ansiblePlaybook ( 
 		// disableHostKeyChecking: true, 
 		inventory: 'deploy-docker/inventory.ini', 
 		playbook: 'deploy-docker/libSys-deploy.yml',
+		       )
             }
         }
 	}
