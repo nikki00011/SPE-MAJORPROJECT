@@ -27,7 +27,7 @@ services:
       - "3306:3306"
 
   backend:
-    build: ./Backend
+    image: nikki00011/libmntsys-backend
     environment:
       DB_URL: jdbc:mysql://database:3306/LibSystem?createDatabaseIfNotExist=true
       DB_USERNAME: NIKITA
@@ -41,7 +41,7 @@ services:
         condition: service_healthy
 
   frontend:
-    build: ./Frontend
+    image: nikki00011/libmntsys-frontend
     networks:
       - libSystem
     ports:
