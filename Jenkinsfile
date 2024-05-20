@@ -51,10 +51,10 @@ pipeline {
 		       }
                 }
 	}
-	// stage('Ansible Pull & Deploy') {
- //            steps {
- //               ansiblePlaybook colorized: true, disableHostKeyChecking: true, installation: 'Ansible', inventory: 'deploy-docker/inventory', playbook: 'deploy-docker/libSys-deploy.yml'
- //            }
- //        }
+	stage('Ansible Pull & Deploy') {
+            steps {
+               ansiblePlaybook colorized: true, disableHostKeyChecking: true, installation: 'Ansible', inventory: 'deploy-docker/inventory', playbook: 'deploy-docker/libSys-deploy.yml'
+            }
+        }
 	}
 }
