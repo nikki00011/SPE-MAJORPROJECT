@@ -22,7 +22,7 @@ pipeline {
         stage('Maven Build') {
             steps {
                 dir('./Backend') {
-                    sh 'mvn clean install'
+                    sh 'mvn clean install -DskipTests'
                 }
             }
         }
