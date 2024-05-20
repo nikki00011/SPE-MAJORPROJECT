@@ -47,7 +47,7 @@ pipeline {
 		    }
 		    
 		    sh 'docker push nikki00011/libmntsys-frontend'
-			// sh 'docker push nikki00011/libmntsys-backend'
+	            sh 'docker push nikki00011/libmntsys-backend'
 		       }
                 }
 	}
