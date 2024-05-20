@@ -1,45 +1,51 @@
-version: '2.26.0'
+version: '3.9'
+
 networks:
-  libSys-network:
+  libSystem:
+
 volumes:
   database-volume:
-  logs:
+
 services:
-  mydb:
+  database:
     image: mysql:latest
-    healthcheck:
-      test: [ "CMD","ls" ]
-    container_name: database-container
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: 
+      MYSQL_ROOT_PASSWORD: Tusha23!
+      MYSQL_DATABASE: LibSystem
+      MYSQL_USER: NIKITA
+      MYSQL_PASSWORD: Nikita11!
     volumes:
       - database-volume:/var/lib/mysql
     networks:
-      - libSys-network
-  ebill-backend:
-    image: nikki00011/libmntsys-backend
-    container_name: libSys-backend
+      - libSystem
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
     ports:
-      - "5000:5000"
+      - "3306:3306"
+
+  backend:
+    build: ./Backend
     environment:
-      MYSQL_URL: jdbc:mysql://localhost:3306/LibSystem?createDatabaseIfNotExist=true
-      MYSQL_USERNAME: NIKITA
-      MYSQL_PASSWORD: NIKITA11!
-    volumes:
-      - logs:/logs
+      DB_URL: jdbc:mysql://database:3306/LibSystem?createDatabaseIfNotExist=true
+      DB_USERNAME: NIKITA
+      DB_PASSWORD: Nikita11!
     networks:
-      - libSys-network
-    depends_on:
-      mydb:
-        condition: service_healthy
-  libSys-frontend:
-    image: nikki00011/libmntsys-backend
-    container_name: libSys-frontend
-    stdin_open: true
+      - libSystem
     ports:
-      - "3000:3000"
-    networks:
-      - libSys-network
+      - "8081:8081"
     depends_on:
-      - libSys-backend
+      database:
+        condition: service_healthy
+
+  frontend:
+    build: ./Frontend
+    networks:
+      - libSystem
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+
