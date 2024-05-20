@@ -6,7 +6,7 @@
     - name: Run Docker Compose
       command: docker-compose up -d
       args:
-        chdir: /var/lib/jenkins/workspace/SPE-MAJORPROJECT
+        chdir: /var/lib/jenkins/workspace/SPE_MAJORPROJECT
 
 # ---
 # - name: copy docker-compose file
