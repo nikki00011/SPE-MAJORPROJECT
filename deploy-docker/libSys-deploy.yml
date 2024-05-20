@@ -1,42 +1,52 @@
 ---
-- name: copy docker-compose file
-  hosts: all
+- name: Run Docker Compose
+  hosts: localhost
+  gather_facts: no
   tasks:
-    - name: copy docker-compose file
-      copy:
-        src: ./docker-compose.yml
-        dest: ./
-    - name:  docker-compose down
-      command: docker-compose down
-    - name: run docker-compose file
+    - name: Run Docker Compose
       command: docker-compose up -d
+      args:
+        chdir: /var/lib/jenkins/workspace/SPE-MAJORPROJECT
+
 # ---
-# - name: Deploy Docker Compose stack
+# - name: copy docker-compose file
 #   hosts: all
-#   become: true
-
 #   tasks:
-#     - name: Install Docker Compose
-#       apt:
-#         name: docker-compose
-#         state: present
-
-#     - name: Pull Backend Image
-#       docker_image:
-#         name: nikki00011/libmntsys-backend
-#         source: pull
-
-#     - name: Pull Frontend Image
-#       docker_image:
-#         name: nikki00011/libmntsys-frontend
-#         source: pull
-
-#     - name: Copy Docker Compose file to host
+#     - name: copy docker-compose file
 #       copy:
-#         src: /var/lib/jenkins/workspace/Major/docker-compose.yml
-#         dest: /opt/docker-compose.yml
-
-#     - name: Start Docker Compose stack
+#         src: ./docker-compose.yml
+#         dest: ./
+#     - name:  docker-compose down
+#       command: docker-compose down
+#     - name: run docker-compose file
 #       command: docker-compose up -d
-#       args:
-#         chdir: /opt/
+# # ---
+# # - name: Deploy Docker Compose stack
+# #   hosts: all
+# #   become: true
+
+# #   tasks:
+# #     - name: Install Docker Compose
+# #       apt:
+# #         name: docker-compose
+# #         state: present
+
+# #     - name: Pull Backend Image
+# #       docker_image:
+# #         name: nikki00011/libmntsys-backend
+# #         source: pull
+
+# #     - name: Pull Frontend Image
+# #       docker_image:
+# #         name: nikki00011/libmntsys-frontend
+# #         source: pull
+
+# #     - name: Copy Docker Compose file to host
+# #       copy:
+# #         src: /var/lib/jenkins/workspace/Major/docker-compose.yml
+# #         dest: /opt/docker-compose.yml
+
+# #     - name: Start Docker Compose stack
+# #       command: docker-compose up -d
+# #       args:
+# #         chdir: /opt/
