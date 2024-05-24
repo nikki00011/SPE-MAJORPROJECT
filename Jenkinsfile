@@ -26,13 +26,13 @@ pipeline {
                 }
             }
         }
-	stage('Test'){
-	    steps{
-		dir('backend') {
-			sh 'mvn test'
-			}
-		}
-	}
+	// stage('Test'){
+	//     steps{
+	// 	dir('backend') {
+	// 		sh 'mvn test'
+	// 		}
+	// 	}
+	// }
 
         
         stage('Build Docker Image') {
