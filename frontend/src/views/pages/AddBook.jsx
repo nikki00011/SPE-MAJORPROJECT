@@ -90,10 +90,10 @@ const AddBook = () => {
       return;
     }
 
-    if (image === null || image === undefined) {
-      toast.error("Please upload image.");
-      return;
-    }
+    // if (image === null || image === undefined) {
+    //   toast.error("Please upload image.");
+    //   return;
+    // }
 
     setIsUpload(true);
 
