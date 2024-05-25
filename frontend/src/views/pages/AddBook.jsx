@@ -327,7 +327,8 @@ const AddBook = () => {
                             type="file"
                             accept="image/*"
                             onChange={(e) => {
-                              setImage(e.target.files[0]);
+                              setImage(e.target.files?e.target.files[0]?e.target.files[0]:"":"");
+                              //setImage(e.target.files[0]);
                             }}
                           />
                         </label>
