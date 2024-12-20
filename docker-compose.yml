@@ -24,7 +24,7 @@ services:
       timeout: 10s
       retries: 3
     ports:
-      - "3306:3306"
+      - "3307:3306"
 
   backend:
     image: nikki00011/libmntsys-backend
